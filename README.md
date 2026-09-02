@@ -25,17 +25,17 @@ raiz do projeto:
 docker-compose up -d
 ```
 
-| Serviço    | Imagem utilizada                            | Porta exposta no host |
-| ---------- | ------------------------------------------- | --------------------- |
-| HTTP       | `nginx:alpine`                              | `80`                  |
-| SSH        | `lscr.io/linuxserver/openssh-server:latest` | `2222`                |
-| PostgreSQL | `postgres:alpine`                           | `5432`                |
-| Redis      | `redis:alpine`                              | `6379`                |
+| Serviço    | Imagem utilizada     | Porta exposta no host |
+| ---------- | -------------------- | --------------------- |
+| HTTP       | `nginx:alpine`       | `80`                  |
+| SSH        | `panubo/sshd:latest` | `22`                  |
+| PostgreSQL | `postgres:alpine`    | `5432`                |
+| Redis      | `redis:alpine`       | `6379`                |
 
 Por exemplo, para verificar as portas abertas pelo laboratório:
 
 ```bash
-go run ./cmd/pscan -target 127.0.0.1 -ports 80,2222,5432,6379
+go run ./cmd/pscan -target 127.0.0.1 -ports 80,22,5432,6379
 ```
 
 Para finalizar o laboratório e remover os containers:
@@ -89,7 +89,7 @@ IPv4 antes da varredura.
 ./pscan -target 127.0.0.1
 
 # Porta única
-./pscan -target 127.0.0.1 -ports 445
+./pscan -target 127.0.0.1 -ports 22
 
 # Intervalo de portas
 ./pscan -target 192.168.0.1 -ports 20-25

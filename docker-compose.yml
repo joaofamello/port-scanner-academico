@@ -7,14 +7,11 @@ services:
       - port-scanner-lab
 
   ssh:
-    image: lscr.io/linuxserver/openssh-server:latest
+    image: panubo/sshd:latest
     environment:
-      - USER_NAME=scanner
-      - USER_PASSWORD=lab-password
-      - PASSWORD_ACCESS=true
-      - SUDO_ACCESS=false
+      SSH_USERS: "scanner:lab-password:1000"
     ports:
-      - "2222:2222"
+      - "22:22"
     networks:
       - port-scanner-lab
 
